@@ -23,5 +23,16 @@
             <a href="" class="btn btn-danger">DELETE</a>
         </td>
     </tr>
+    @foreach ($categories as $cat)
+        <tr>
+            <td>{{$cat->id}}</td>
+            <td>{{$cat->name}}</td>
+            <td>{{$cat->description}}</td>
+            <td>
+                <a href="" class="btn btn-warning">EDIT</a>
+                <a href="" class="btn btn-danger">DELETE</a>
+            </td>
+        </tr>
+    @endforeach
 </table>
 @endsection
