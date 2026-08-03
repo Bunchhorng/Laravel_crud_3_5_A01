@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5);
         return view('category.index', compact('categories'));
     }
 
@@ -48,9 +48,11 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(string $id)
     {
-        return view('category.edit');
+        $category = Category::findOrFail($id);
+
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -58,7 +60,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
@@ -66,6 +68,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::destroy($id);
+        return redirect()->route('category.index')->with('message', 'Deleted category successfully!');
     }
 }

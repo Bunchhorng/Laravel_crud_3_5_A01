@@ -14,25 +14,26 @@
         <th>DESCRIPTION</th>
         <th>ACTION</th>
     </tr>
-    <tr>
-        <td>098</td>
-        <td>Fruite</td>
-        <td>New stock</td>
-        <td>
-            <a href="{{route('category.edit')}}" class="btn btn-warning">EDIT</a>
-            <a href="" class="btn btn-danger">DELETE</a>
-        </td>
-    </tr>
     @foreach ($categories as $cat)
         <tr>
             <td>{{$cat->id}}</td>
             <td>{{$cat->name}}</td>
             <td>{{$cat->description}}</td>
-            <td>
-                <a href="" class="btn btn-warning">EDIT</a>
-                <a href="" class="btn btn-danger">DELETE</a>
+            <td class="d-flex justify-content-center gap-2">
+                <a href="{{ route('category.edit', $cat->id) }}" class="btn btn-warning">
+                    EDIT
+                </a>
+                <form action="{{route('category.destroy', $cat->id)}}" method="POST"
+                    onclick="return confirm('Are you sure to delete this category?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"
+                    >DELETE</button>
+                </form>
             </td>
         </tr>
     @endforeach
 </table>
+{{ $categories->links() }}
+
 @endsection
