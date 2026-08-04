@@ -11,6 +11,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-radius: 0.375rem;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
 
 <body class="d-flex">
@@ -21,23 +31,35 @@
             <span class="fs-4 fw-bold">POS <br> SYSTEM</span> 
         </a>
         <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li> <a href="#" class="nav-link link-body-emphasis">
-                <i class="bi bi-speedometer2"></i> 
+        <ul class="nav nav-pills flex-column mb-auto gap-1">
+            <li class="nav-item">
+                <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" 
+                class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('dashboard') ? 'active' : 'link-body-emphasis' }}">
+                    <i class="bi bi-speedometer2 fs-5"></i> 
                     Dashboard
-                </a> </li>
-            <li> <a href="{{route('category.index')}}" class="nav-link link-body-emphasis">
-                <i class="bi bi-table"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('category.index') }}" 
+                class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('category.*') ? 'active' : 'link-body-emphasis' }}">
+                    <i class="bi bi-table fs-5"></i>
                     Manage Categories
-                </a> </li>
-            <li> <a href="#" class="nav-link link-body-emphasis"> 
-                <i class="bi bi-columns-gap"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ Route::has('product.index') ? route('product.index') : '#' }}" 
+                class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('product.*') ? 'active' : 'link-body-emphasis' }}">
+                    <i class="bi bi-columns-gap fs-5"></i>
                     Manage Products
-                </a> </li>
-            <li> <a href="#" class="nav-link link-body-emphasis"> 
-                <i class="bi bi-people"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ Route::has('user.index') ? route('user.index') : '#' }}" 
+                class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('user.*') ? 'active' : 'link-body-emphasis' }}">
+                    <i class="bi bi-people fs-5"></i>
                     Manage Users
-                </a> </li>
+                </a>
+            </li>
         </ul>
         <hr>
         <div class="dropdown" bis_skin_checked="1"> <a href="#"
