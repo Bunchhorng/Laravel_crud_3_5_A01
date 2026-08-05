@@ -47,7 +47,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ Route::has('product.index') ? route('product.index') : '#' }}" 
+                <a href="{{ route('product.index') }}" 
                 class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('product.*') ? 'active' : 'link-body-emphasis' }}">
                     <i class="bi bi-columns-gap fs-5"></i>
                     Manage Products
