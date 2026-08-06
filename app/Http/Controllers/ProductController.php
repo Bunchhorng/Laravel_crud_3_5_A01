@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -61,17 +62,38 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('product.edit', compact('categories', 'product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request->validate([
+            "name" => "required|string|max:100",
+            "price"=> "required|decimal:0.00, 9999",
+            "Quantity" => "required",
+            "category_id" => "required",
+            "image" => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+            ]
+        );
+
+        if($request->hasFile('image')){
+            // delete old image from folder products
+            if ($product->image && Storage::disk('public')->exists($product->image)) {
+                Storage::disk('public')->delete($product->image);
+            }
+
+            $imagePath = $request->file('image')->store('products', 'public');
+            $validated['image'] = $imagePath;
+        }
+
+        $product->update($validated);
+        return redirect()->route('product.index');
     }
 
     /**

@@ -26,7 +26,7 @@
                 <img src="{{ asset('storage/' . $pro->image) }}" width="50" height="50" alt="{{ $pro->name }}" class="object-fit-cover rounded">
             </td>
             <td class="d-flex justify-content-center gap-2 my-2">
-                <a href="" class="btn btn-warning">
+                <a href="{{route('product.edit', $pro->id)}}" class="btn btn-warning">
                     EDIT
                 </a>
                 <form action="" method="POST"
