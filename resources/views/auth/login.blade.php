@@ -69,8 +69,8 @@
               </a>
             </div>
 
-            <form action="#" method="POST">
-              
+            <form action="{{route('auth.login')}}" method="POST">
+              @csrf
               <!-- Email Input -->
               <div class="mb-3">
                 <label for="email" class="form-label text-dark fw-bold text-uppercase small">Email Address</label>
@@ -87,16 +87,6 @@
                   <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-lock"></i></span>
                   <input type="password" class="form-control bg-light border-start-0 py-2" id="password" name="password" placeholder="••••••••" required>
                 </div>
-              </div>
-
-              <!-- System Role Select Dropdown -->
-              <div class="mb-4">
-                <label for="role" class="form-label text-dark fw-bold text-uppercase small">Role</label>
-                <select class="form-select bg-light py-2" id="role" name="role" required>
-                  <option value="" disabled selected>Select system role</option>
-                  <option value="user">User</option>
-                  <option value="admin">Admin</option>
-                </select>
               </div>
 
               <!-- Submit Button matching '+Add New Category' Blue Accent -->

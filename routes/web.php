@@ -16,14 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/dashboard', function(){
+    return view('dashboard');
+})->name('dashboard');
+
 Route::get('/', function(){
-    return view('layout.app');
-});
+    return view('welcome');
+})->name('welcome');
+
+
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'register'])->name('register'); 
 
-Route::get('/login', [AuthController::class, 'loginForm'])->name('auth.login');
+Route::get('/login', [AuthController::class, 'loginForm'])->name('auth.loginForm');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');

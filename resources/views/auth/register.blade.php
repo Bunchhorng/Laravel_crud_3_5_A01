@@ -100,12 +100,12 @@
 
               <!-- Submit Button matching '+Add New Category' Blue Accent -->
               <button type="submit" class="btn btn-primary w-100 py-2 fs-6 rounded-3 fw-bold mb-3">
-                Create Staff Account
+                Create User Account
               </button>
 
               <div class="text-center">
                 <span class="text-secondary small">Already registered?</span>
-                <a href="{{route('auth.login')}}" class="text-primary fw-bold text-decoration-none small ms-1">Login here</a>
+                <a href="{{route('auth.loginForm')}}" class="text-primary fw-bold text-decoration-none small ms-1">Login here</a>
               </div>
 
             </form>
