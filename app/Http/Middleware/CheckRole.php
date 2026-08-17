@@ -16,8 +16,11 @@ class CheckRole
     public function handle(Request $request, Closure $next, string $role): Response
     {
         if (! $request->user() || $request->user()->role !== $role) {
-            return response()->json(['message' => 'Unauthorized action.'], 403);
+            return redirect()
+                ->route('welcome')
+                ->with('error', 'You are not authorized to access this page.');
         }
+
         return $next($request);
     }
 }
